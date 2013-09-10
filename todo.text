@@ -1,0 +1,1236 @@
+uh yeah welcome to jrpg, 
+
+ .---.          ,---.   ,--,    .--.   ,--,   .---. .-. .-.                      
+/ .-. )|\    /| | .-' .' .'    / /\ \.' .'   / .-. )|  \| |                      
+| | |(_)(\  / | | `-. |  |  __/ /__\ \  |  __| | |(_)   | |                      
+| | | |(_)\/  | | .-' \  \ ( _)  __  \  \ ( _) | | || |\  |                      
+\ `-' /| \  / | |  `--.\  `-) ) |  |)|\  `-) ) `-' /| | |)|                      
+ )---' | |\/| | /( __.')\____/|_|  (_))\____/ )---' /(  (_)                      
+(_)    '-'  '-'(__)   (__)           (__)    (_)   (__)                          
+.-.  .-..---. ,---.  ,-. .-.,-..-. .-.  ,--,     _______,-._______,-.    ,---.   
+| |/\| / .-. )| .-.\ | |/ / |(||  \| |.' .'     |__   __|(|__   __| |    | .-'   
+| /  \ | | |(_) `-'/ | | /  (_)|   | ||  |  __    )| |  (_) )| |  | |    | `-.   
+|  /\  | | | ||   (  | | \  | || |\  |\  \ ( _)  (_) |  | |(_) |  | |    | .-'   
+|(/  \ \ `-' /| |\ \ | |) \ | || | |)| \  `-) )    | |  | |  | |  | `--. |  `--. 
+(_)   \|)---' |_| \)\|((_)-'`-'/(  (_) )\____/     `-'  `-'  `-'  |( __.'/( __.' 
+       (_)        (__|_)      (__)    (__)                        (_)   (__)     
+
+
+========
+August 10th,
+
+Images are now becoming annoying
+
+It is time to refactor them into graphics,
+
+all images will be loaded 
+
+I need to find where graphics is drawing each sprite
+
+(text, menu, player, npc, chest, tiles)
+
+and find a way to pull out the images and have a way to associate
+them with the desired calls
+
+i think i could give 
+player,
+npc,
+chest,
+
+a string key that identifies which SDL_Surface* to use in graphics
+where graphics on construction
+loads the assets and populates
+a map <string, sdl_surface>
+
+now:
+drawChar(SpriteBase, SDL_Rect)
+SpriteBase gets a string key for graphics sprite_vector
+
+drawTiles(tiles, tileset)
+tiles also gets a key for drawing
+
+drawSprite(string ... ...)
+	overloaded with a string key instead of sdl_surface
+
+
+========
+August 9th
+
+
+swap avatar imnages
+
+drawCharPane
+	in  : CharMenu, vector<NPC*> avatars, party (vector<Toon*>)
+	out : void
+
+Draws the menu, sprites, health, and mana bars for the given party.
+
+If I wanted to push sprites into graphics this would allow that, though require some association
+
+--
+
+change init to make vector of surfaces
+
+change swap to hangle swapping party and surfaces
+
+condensce render into drawCharPane
+
+
+========
+August 8
+
+I made some battle animations that look alright,
+
+----------------------------------------------
+Fire Emblem for the GBA only animates attacks,
+could have idle animation either way these 
+will need to be triggered.
+----------------------------------------------
+
+Maybe have a graphics animation object(?)
+
+Animation
+	takes bmp
+	cuts it up
+	adds funcitonality (cycle, trigger("attack1") )
+
+this is what sprite base accomplishes at the moment
+though not in the prettiest of fashions
+--
+
+Lets do character pane.
+
+graphically this could be pushed back into 
+drawCharPane(),
+
+takes the menu, sprite vector and toon vector, 
+graphics->drawCharPane(CharMenu, sprites, party);
+
+I need to easily change the sprite->toon association
+
+again this goes back to the consideration of putting all
+the assets into graphics and have them associated in a map
+of string : SDL_Surface*
+
+
+========
+August 6
+
+Avatars were drawn but could be bigger,
+
+Graphics needs a draw character pane
+
+finish implementing items 
+
+go to equipment
+
+futher considerations on how spells are aquired/shifted
+
+I like the idea of [qwer] = tank
+				   [asdf] = dps
+				   [zxcv] = heal
+For the battle system
+
+This gives itself to 4 spells at a time that can change or upgrade
+
+Standard Tank
+
+Level 1:
+	Taunt 		: Forces enemy to attack this toon for 10 seconds
+	Smack 		: 10 dmg
+	Stun 		: Stops oppenent from acting for 10 seconds
+	Shield 		: Absorbs 20% dmg for 10 seconds
+
+Standard DPS
+
+Level 1:
+	Firball 	: 50 dmg
+	Fireprayer  : 10% bonus damage for 10 seconds
+	Firestorm 	: 100 dmg 20 second cooldown
+	Firewall 	: 90% dmg reduction for 1 second
+
+Standard Heal
+
+Level 1:
+	Heal 		: Target recovers 10 hp
+	Mass Heal 	: Party recovers 10 hp 20 second cooldown
+	Mana up 	: Gain 1 mana per second while active
+	Protect		: Target takes no damage for 5 seconds
+
+
+	4 spells, user hot keys , gained by levels
+
+Battle System:
+	Casts are instant
+	Cooldowns
+	Dmg reduction
+	Stuns
+	Force targeting
+	MP/HP gain
+	Target Enemy, toon, party, enemy party
+
+timer
+
+
+direct effects 				:	  from toon or enemy to toon, enemy, party, enemy, party
+	x happens to target
+	+- HP/MP
+
+tempory effects 			:	  from toon or enemy to toon, enemy, party, enemy, party
+	% direct effect bonus/reduction
+	+- HP/MP over time
+	action prevention (stuns)
+	forced targeting (taunts)
+	disable spell
+
+passive effects (last duration of combat) :	  applied to toon, enemy, party, enemy, party
+	spells and equipment should invoke this
+	%dmg bonus/reduction
+	+- HP/MP/STATS
+	+- HP/MP over time
+
+permenent effects (last in and out of combat) : applied to toon, party
+	poison, fatigue, these sort of things
+	cured by spells
+
+All Spells have cooldowns reduced by characters speed
+
+Battle states allows spells to be cast
+
+Targeting can be tabbed, shift tabbed, and [uio] for enemies and [jkl] for party
+
+Keyboard shortcuts should be displayed
+
+----------
+Toons/Enemies will have to associate tempory and passive effects
+
+tempory effects will have ctr decremented on update call
+at ctr 0 effect is destroyed
+
+passive effects are populated upon construction, destroyed at destruction
+
+-
+
+Direct effects immediately mutate targets data
+Tempory effects are added to targets tempory_affect_vector
+Permenent effects are added at consturction to permentent_effect_vector, this can be altered in combat
+
+-
+Stuns, Taunts, Disable,
+These actions force targeting
+			  prevent actions
+
+Targeting could be forced by boolean and target in toon/enemy object,
+
+stuns and disable could be checked in the spell "slot" preventing action
+
+----------
+
+spell "slots"
+4 slots, switchable in menu system
+spells are map  of int to ISpell, where int is level gained
+upon level gain new spells are allowed to overwrite previous slots
+
+
+
+on update
+	iterate over effects
+
+
+
+
+========
+August 3
+
+swap is implemented
+
+Ok spells,
+
+ISpell :
+	bool in_combat? // allows the spell to be casted in or out of combat
+	action(toon) // the action to call on the toon
+	action(enemy) // action to call on the enemy
+
+Toon vector<ISpell>
+	show spells list
+	call ISpell->action(target)
+
+
+make heal, taunt, fireball
+also make third toon in party [done]
+
+-----------
+
+equip?
+
+-----------
+
+usables
+
+Usable follows spell design pattern
+make health potion
+
+---------
+
+player needs a party bay, 
+a place for non active toons to 
+exist.
+
+vector nonactive_toons<>
+passive_toon?
+available_toon
+
+not_party!
+
+addToParty() overflows at 3 to not_party
+
+========
+Spells : Aug 2
+
+battle spells
+	status, damage, mana drain, combat conditions
+
+out of battle spells
+	heal, status change, location change
+	enviroment change, for toon or party
+
+--------------------
+
+		[ Toon ]
+
+=========
+A2 cont.
+
+ -----------------------------------------
+| hard  			<-> 		     easy |
+|										  |
+|    spell  equip  use  remove  info 	  |
+ -----------------------------------------
+
+so we can toss items:
+
+info can be the same callback for both, display description
+
+use : make a health potion
+
+equip : make some gear
+		give it to a character, remove if already slotted
+
+--
+
+swap : make a new party member in a vector of possible party members
+	   display possible party vector
+	   swap 
+
+remove : list toons equipment, remove selected
+
+spell : make some spells
+		give to toon
+		use it
+	
+
+=========
+August 2nd,
+
+.............>AAAAAAAAAAnd we can toss items
+
+Menu state has been created,
+need significant refactoring,
+
+
+keyboard handler could maybe be abstracted
+
+
+at the moment alot of seg faults are happening
+when im attempting to draw menus with empty 
+selected values.
+
+I've been using incSelected() to work around this 
+but I dont like this approach
+in worldstate i set constructor to true
+then false afterwards to init this value as
+well.
+
+this could be approached better
+
+
+
+Alot of init functions are popping up everywhere,
+maybe this could have a better design pattern
+
+State boolean selected mirror's selected_huh in TextMenu,
+this could be condensed into a single boolean.			[done]
+
+I'd like to back up the codebase somewhere as well
+
+
+=========
+August 1st,
+
+rents due,
+
+menu has been refactored a bit
+now it appears and switches
+
+lets try to toss the coin
+
+ok we can select items
+
+some booleans need to be condencsed
+
+
+=========
+J31 cont.
+
+all menus do this shit, 
+should be abstracted
+
+is open -> used to test if we should draw
+
+menu vector -> holds the menus items (items can hold items)
+
+menu -> menu item that holds the vector
+
+setOptions -> gives the menu the vector
+
+box -> tells it where to go
+
+Menu -> thing to hold the menu which contains the items used for dec/inc and callbacks
+
+setselected -> where do we draw the cursor
+
+-----------------------
+
+new TextMenu (name, desc, vector, box, selected_huh) (if selected then its is first)
+
+is_open -> is_selected
+
+vector stays passed better
+
+item holder which is an item in itself is factory method'd
+
+menu vector
+box
+menu
+(setSelected)
+
+MainMenuState
+MenuState
+WorldState
+
+=========
+July 31st,
+
+Chattermob is over, time to put full code
+efforts into other projects, I wonder
+what could use more of my time, oh yeah...
+
+By the looks of it the menu page needs:
+callbacks implented
+character images
+curser movement
+party handling.
+
+
+I'd say the plan of attack is,
+
+curser movement
+	-characters, items, functions
+	-three panes
+character avatars
+	-in the toon object?
+
+callbacks: from current line + 175ish
+
+select items in the inventory:
+	in which they can:
+		equip equipables
+		use items
+		toss items
+		display info in box
+select characters in the party:
+	in which they can:
+		remove equipment
+		use spells which can be evoked out of combat
+		swap with other available party members
+		open the character info pane
+
+in the character info pane the client can
+	view info on spells
+	view info on equipment
+	view character lore
+	view character stats
+
+=========
+July 14th,
+
+
+MainMenu ....what is it......what does it do......,howw do you know
+
+inventory pane,
+	textmenu
+		on callback go to selection pane
+					 set selection as active element
+		left right switch pane
+		[ a ] enters selection
+
+character pane
+	list of three active characters
+	health mana
+	image
+
+		should this somehow be inside text menu
+
+
+
+
+*_*_*_*_*_*_*_*
+
+Boilerplate for ISpell,Equipable and Toon are finished.
+also I have updated the makefile to dynamically create object
+list.
+
+Just woke up, bored, figure I'd
+work on this. Blizz has summer
+internship program, 12 weeks, paid
+irvine california.
+
+-------------------
+What else do I need for Toon?
+
+// anything that can be put on,
+Equipable: ItemBase
+	
+	slot 			: string 									// which slot can this go in
+	stat_mods   	: map< string stat name, int modifier>  	// ("defense" : +4)
+
+	{other ideas}
+		durability : int //items decay, need repair
+		evoke  	   : ISpell, a spell attached to the item to be evoked
+		lore 	   : string, extended data onthe item 
+
+ISpell:
+	name 	: string
+	info 	: string
+	cost 	: int 		// mana cost
+	damage 	: int 		// base damage of spell
+
+spells need to be thought out {!!!!}
+	heal spells, buffs, debuffs, 
+	combat modifiers, damage spells, 
+	damage over time, heal over time,
+	damage all, heal all, etc
+
+spells will need to directly interface
+with the battle state. maybe a y-combinator
+type thing. takes ISpell function and 
+implements into the current battle instance
+fuck i dont know
+
+Spells should be ISpell
+
+Damage_Spell : ISpell
+
+Heal_Spell : ISpell
+
+
+---------------------------------------
+<<--- Does this need to be ToonBase? --->>
+
+how are spells restricted, pathed?
+
+lots of characters,
+
+characters gained throughout game
+
+characters level up gaining new levels and stats
+
+stat gain implementation different for each character
+spell gain implementation different for each player
+---------------------------------------
+		<<--- no --->>
+| [ This shows that spells and stats could function within   ] ||
+V [ a singleton Toon as opposed to an abstract base ToonBase ] VV
+
+each spell could have an active level
+if level is not there show as inactive
+
+stat gain is user decided. Toons start 
+with a stat base which guides use decision,
+though in the end it is up to the user.
+
+then on toon construction the map of spells is populated
+
+stats:					(?????)
+	Strength 			(?????)
+	defense 			(?????)
+	initiative
+	magic
+	magic defense
+	health
+	mana
+
+
+=========
+July 13th PART 2:
+
+heres an idea:: associate images with string keys and do all the image shit in graphics	****
+				based upon the key associated with the object0
+
+ok devised the stuff, heads a little spinny
+
+list inventory in inventory pane
+enable selection
+
+create container for toon pane
+swap function display
+
+PLAYER:
+	party : vector<&Toons>
+		Toon
+			health  		: int
+			mana 			: int
+			name 			: string
+			description 	: string
+			lore 			: string
+			{stats : <ints> }
+			EQUIP:
+				helm 		: IEquipable
+				chest 		: IEquipable
+				legs 		: IEquipable
+				gloves 		: IEquipable
+				left_hand 	: IEquipable
+				right_hand 	: IEquipable
+			spells : map<string : &ISpell>
+
+			// speech could possibly be a map of keys to strings :: ie "success" "Way to go kid" || "yipee"
+
+========= ******* +++++++++
+July 13th,
+
+ok the code base is forked,
+
+I've devised a new system for 
+the menu, new state MenuState
+
+here the client can:
+select items in the inventory:
+	in which they can:
+		equip equipables
+		use items
+		toss items
+		display info in box
+select characters in the party:
+	in which they can:
+		remove equipment
+		use spells which can be evoked out of combat
+		swap with other available party members
+		open the character info pane
+
+in the character info pane the client can
+	view info on spells
+	view info on equipment
+	view character lore
+	view character stats
+
+I've drawn out some designs for this
+
+main
+---------------------
+|[]chr|				|
+|[]___|functions	|
+|[]chr|_____________|
+|[]___|inventory 	|
+|[]chr|				|
+|[]   |				|
+---------------------
+
+char pane
+---------------------
+| [   ] stats		|
+| [chr] 			|
+| [   ]_____________|
+|  inv   |  equp	|
+|    	 |			|
+|    	 |			|
+---------------------
+
+This will need some new stuff
+
+	class toon:
+		a toon is a possible party member. They
+		have stats, spells, levels, health, 
+		mana, equipment, lore, name, sprites, 
+		description, and possibly speech plus
+		whatever else gets implemented.
+
+	party: the clients playable party. probably put this in player
+
+	available toons: list of swapable toons, also probably in player
+
+	inventory: already in player, takes iHoldables
+
+	equipment: IEquipable, which is an IHoldable
+		equipment can go in specific slots (weapon, helm, etc)
+		it has stats and modifiers (passive v active)
+
+	IUseable : any item which is usuable (define combat internally)
+		this is your potions, scrolls, stat boosters, etc
+
+
+Also the mechanics need to be thought out!
+
+	inventory menu
+		list inventory
+		allows toss, use, equip, info to be called
+	toon menu
+		list the possible toons
+		allows for swap, equip, info, spells to be called upon selecetd
+	function menu
+		displays toss, use, equip, info or
+				 swap, spells, equip, info 
+		for the currently occupied selection pane
+		(either inventory or party)
+
+
+<><><><><><>
+
+I feel like i have to fork the code base
+because the menu system is in a really bad
+place. my worst fears have come true as the 
+object are not updating correctly. you want the 
+parent node to know there are new child nodes, 
+but it doesnt.
+
+
+========
+July 12th,
+
+inventory as a menu
+
+========
+July 11th,
+
+Lets make a list for inventory
+
+ok the inventory can be opened and drawn
+
+I kind of want to push this in to the current menu system
+to maintain abstraction
+
+========
+July 5th,
+
+did I work on this recently?
+school started
+
+inventory, party, battles
+
+i honestly dont know if im doing things corrrect
+maybe I should look into referance, mem management
+deconstrutores, freeing objects, flyweights
+
+lets go make inventory in a menu
+
+O MY GOD SOMETHING TERRIBLE HAPPENED IT DOESNT RUN
+ok, so i restarted the vm and shit was, cool
+
+makes me think i need to use the delete function more [ done ]
+thing seem to be running faster, no true benchmarks
+
+========
+June 30th,
+
+put about an hour in or so,
+first time since the 19th
+works been heavy and school 
+starts tomorrow,
+
+
+The coin is in the box, you can 
+now remove the coin.  all the
+collision detection, movement
+handling and chests and npcs
+are being very poorly dealt
+with at the moment. this should
+be priority.
+
+Inventory needs a menu extension.
+
+The party system needs to be
+implemented, (join, view, modify)
+
+and then BATTTTTLESSSS
+
+so much  needed   abstraction 
+
+
+   _._
+ _/   \_
+/		\
+[ ]  [ ]|
+|		|
+ |=+++=/
+  ----
+this text is unimportant
+
+========
+June 19th,
+
+I guess do the boxes now
+lets rename and refactor
+
+ok rename is done, refactor?
+frames are being helt with weird this could be done better,
+
+
+lets make boxes tho [half]
+
+ok put the coin in the box
+and then from the box into the inventory
+
+make call by refereance!!!!!
+
+
+
+========
+Object Chart :: June 16th
+
+						[ main ]
+
+		   [ state machine ]~	[input]
+     	    ||		||
+	  [ IState ]   [timer]
+   	   /   |   \
+[Intro] [MainMenu] [World] [Battle]
+   ||	   ||		 ||		 ||
+[Graphcs][Graphcs][Graphcs][Graphcs]
+
+[ WorldMap ]
+	||
+  [Tile]
+
+
+	[SpriteBase]
+	 /		\
+   [npc]  [Player]
+	 	   ~ 	 ~
+	[inventory]		[party]
+		||				||
+	[IHoldable]		 [IToon]
+	/		\		 / | | | | \		 // each playable character
+ (equip, quaf)
+
+
+[TextMenu]
+ 	|
+[TextMenuItem]
+
+
+[ ENEMIES? ]
+
+=============
+June 16th pt 2
+
+ok so SpriteBase is mroe like isprite
+
+Yeah inventory is half implemented and untested,
+i hit a wall with putting it in the player.o
+
+getInventory?
+
+openInventory:
+	player->getInvetory()->list() ???
+
+
+ok we have an inventory,
+it needs a menu to access it
+
+and some test items to stick in it
+
+-- todo --
+object structure
+
+check for pass by val vs pass by reference
+
+static (?)
+
+=============
+June 16th
+
+So talking to people is all cool and shit with word wraps,
+
+time to do inventory, plan of action
+
+Character is in world gets passed to battle 
+and then pass back to world or next world or w/e
+
+so inventory...
+
+party, inventory, equipment, spells
+
+//anything that implements an IHoldable 
+//can be put into the inventory
+//this includes but is not limited too:
+// -equipment
+// -money
+// -potions or something
+// -shit that changes stats
+// -key items
+// -battle items
+// -etc (crafty item based spell system whotfknows)
+IHoldable:
+	string name
+	string description
+
+IEquipable : IHoldable
+
+....
+
+// simplest implentation
+LuckyCoin : IHoldable
+		
+Inventory
+
+	vector<IHoldable> inventory;
+
+	add(IHoldable)
+	drop(IHoldable)
+	show()
+
+
+Player::+
+	inventory?
+	get inventory?
+	inventory -> worldstate?/^-1
+	player inventroy -> battles state?/^-1
+
+=============
+June 14th
+
+Worked for like an hour, first time since the eigth,
+holy shit i need more time.
+
+Uh, 2am, lul, dialougeogogo is ok.
+
+Sort of bad implementation, i feel like the whole
+collision thing is currently fucked
+eh
+write code first, refactor later
+
+DrawText is bad, should have a draw Speech
+that abstracts framing of speech,
+also i haven't really thought about
+scrolling text or anything
+
+probably just going to word wrap a constant box
+and switch it around with a forced time delay
+
+unruly constructors will be teh bane of future
+development, look into better systems
+
+
+
+=============
+June 8th part 2 revenge of the juneeighth
+
+
+Equipments, inventory, party. lulwut is this a game
+
+Treasure Chests, full of booty
+
+Advance Menu Control (read submenus)
+
+Talk to NPCS (next up: creative writing 101)
+
+Save Save Save how the fuck do i write a clean save
+
+HitBoxs on sprites could be tighter, is this a design problem
+
+
+=============
+June 8th
+
+consider new ways to generate characters, animation cycles
+
+consider new ways to generate menu system
+
+party, inventory, equipment, levels, battle
+
+
+=============
+JUNE 7th 
+
+where do i put the keyboard stack, in the input function
+but meh this doesnt really work as i want it to
+
+Sprite needs to keep last neutral frame instead of reverting to down [done]
+
+! collision for character to character (abstract) [done]
+newm ethod
+
+save functionality
+
+Character could become an interface [done]
+
+
+=============
+JUNE 1st
+callback functions for menu system
+refactor menu system
+
+character menu for world state
+
+character interaction in world state
+
+
+===============
+PAST (possibly starting somewhere in late may)
+
+
+TODO:
+Refactoring
+Menu System
+Menu State
+World State
+	-NPCS
+	 dialouge
+	 menus
+
+
+TextMenu
+	
+	TextMenuItem current
+	TextMenuItem selected
+	int x
+	int y
+	SDL_Rect box
+
+	create IMenu
+		returns a vector of imenu items
+		with x,y initliazied withi the imenu
+
+	creates of list of the options
+	in the current state
+
+	gives them co-ordinates within the menu
+	to draw
+
+	~~
+	should get keys held and deal with updating internally
+
+
+TextMenuItem
+	string title
+	string description
+	int x
+	int y
+	vector TextMenuItem options
+
+	action
+
+
+=================== *************** ++++++++++++++++
+TIMELINE:
+	2050 - Gang finds Archdragon Egg, Kingping awakens dragon gains immortallity but is psychichly enslaved
+
+	2250 - Omega Corp rules world run by Kingpin, magic has leaked omega corp and exists in the criminal underground, widely scene as hoax thanks to Omege Corp cover up
+
+Points of Interest:
+	-start as any character, aquire any character
+
+	-deception is shitty but makes killing archdragon easy, 
+
+	-cities across continent, each city has key to final area, plus 3 post final areas
+
+	-each city has a hub for save, rest, shop, level, save
+
+	-dungeon like area with final boss
+
+	-Holy, Waste, and Communication have bonus area unlocked after kingpin dies
+	   sort of hidden
+	   three bonus dungeons with bosses
+	   very hard
+
+MAINGAME
+
+7 Cities, 7 Keys, 7 Characters, 7 Bosses, 7 types w/ 7 weaknesses
+
+	City 					Key 				Character 		Boss							Type			Weakness
+	ore city, 				iron key, 			brute, 			Iron Hobgoblin					Physical		Holy
+	manufacturing city,		mechanical key, 	warrior, 		Mechanical Golem				Initiative		Physical
+	mercantile city,		gold key, 			rogue, 			Master Thief					Stealth			Initiative
+	communications city,	holo key, 			deceptionist,	A.L.I.C.E. 						Deception		Steath
+	academic city,			ornate key, 		wizard, 		Grand Inquisitor				Arcane			Deception
+	waste city,				bile key, 			necromancer, 	Waste Serpent					Vile			Arcane
+	holy city				immaculate keys 	cleric			Sacred Guardian of Secrets		Holy 			Vile
+
+	HELL
+		if character dies he must fight out of hell
+
+FINAL BOSS
+	Omega City
+		Kingpin, releases archdragon opens endgame
+
+ENDGAME
+3 optional areas, help kill dragon
+	Vault of Demons
+		dragon killing weapon
+
+	Labrynth
+		dragon killing armor
+
+	Deck of Holograms
+		dragon killing spell (deception spell)
+
+	Final Resting Place of the Archdragon
+		archdragon fight
+
+GAME MECHANICS
+	HP 					Health Points of character
+	MP 					Mana points
+	Level 				Characters level
+	XP 					Experience Points
+	Strength		 	Does physical damage
+	Defense			  	Reduces physical damage
+	Intelligence 		Magic damage
+	Resistance 			Reduces magic damage
+	Initiative 			attacks per minute
+	Stealth				increases effectiveness of stealth
+	Deception 			increases effectiveness of deception
+
+Characters
+
+4 out of 7
+
+BRUTE:  TANK
+	High Str Mid Def, no int no res, low init, no stealth no dec.
+
+WARRIOR: OFF TANK
+	Mid Str High Def, low int, no res, Mid init, no sth, no dec
+
+ROGUE: DPS
+	mid str, low def, mid int, low res, high init, high sth, low dec
+
+DECEPTIONIST: UTILITY
+	low str, low def, mid int, low res, mid init, no sth, high dec
+
+WIZARD: DPS
+	no str, no def, high int, mid res, low init, no sth, no dc
+
+NECROMANCER: DPS/HEAL
+	low str, low def, mid int, high res, mid init, no sth, no dec
+
+CLERIC: HEAL
+	mid str, mid def, mid int, high res, mid init, no sth no dec.
+
+
+===================
+
+
+states : combat, menu, world map, local map
+
+combat state
+	actions
+	entities
+	getActions()
+	update()
+	render()
+
+menu state
+	cursor
+	selected
+	options
+	update
+	render
+	prevpage
+
+intro state
+	render
+	update
+
+map
+	image
+	tile_map
+	npcs
+	character
+	foreground
+	background
+	render()
+	update()
+
+
+world state
+	tile map
+	char location
+	links
+	enemies
+	update
+	render
+
+local state
+	tile map
+	char location
+	links
+	npcs
+	update
+	render
+
+entities
+	update()
+	render()
+	location
+	sprite
+	name
+	description
+
+character
+	health
+	mana
+	atk
+	def
+	spatk
+	spdef
+	speed
+
+enemy
+	health
+	mana 
+	atk
+	def
+	spatk
+	spdef
+	speed
+
+npc
+	dialog
+	shop
+
+battle_actions
+	attack
+	spell
+	defend
+	item
+	run
+	decide
+
+action
+	target
+	origin
+	effects
+	sprite
+	update
+	render
+
+
+
+
+
+
+
+
+
+
+
+
+

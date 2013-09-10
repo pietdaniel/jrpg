@@ -1,0 +1,801 @@
+==3341== Memcheck, a memory error detector
+==3341== Copyright (C) 2002-2010, and GNU GPL'd, by Julian Seward et al.
+==3341== Using Valgrind-3.6.0.SVN-Debian and LibVEX; rerun with -h for copyright info
+==3341== Command: ./prgm
+==3341== Parent PID: 2423
+==3341== 
+--3341-- 
+--3341-- Valgrind options:
+--3341--    --suppressions=/usr/lib/valgrind/debian-libc6-dbg.supp
+--3341--    --leak-check=full
+--3341--    --log-file=valgrindfile
+--3341--    -v
+--3341-- Contents of /proc/version:
+--3341--   Linux version 2.6.32-5-686 (Debian 2.6.32-48squeeze3) (dannf@debian.org) (gcc version 4.3.5 (Debian 4.3.5-4) ) #1 SMP Fri May 10 08:33:48 UTC 2013
+--3341-- Arch and hwcaps: X86, x86-sse1-sse2
+--3341-- Page sizes: currently 4096, max supported 4096
+--3341-- Valgrind library directory: /usr/lib/valgrind
+--3341-- Reading syms from /lib/ld-2.11.3.so (0x4000000)
+--3341--   Considering /lib/ld-2.11.3.so ..
+--3341--   .. CRC mismatch (computed 19231304 wanted 2b6c260a)
+--3341--   Considering /usr/lib/debug/lib/ld-2.11.3.so ..
+--3341--   .. CRC is valid
+--3341-- Reading syms from /home/barney/Documents/jrpg-alpha/prgm (0x8048000)
+--3341-- Reading syms from /usr/lib/valgrind/memcheck-x86-linux (0x38000000)
+--3341--    object doesn't have a dynamic symbol table
+--3341-- Reading suppressions file: /usr/lib/valgrind/debian-libc6-dbg.supp
+--3341-- Reading suppressions file: /usr/lib/valgrind/default.supp
+--3341-- REDIR: 0x4016490 (index) redirected to 0x3803eda3 (vgPlain_x86_linux_REDIR_FOR_index)
+--3341-- Reading syms from /usr/lib/valgrind/vgpreload_core-x86-linux.so (0x401f000)
+--3341-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so (0x4021000)
+==3341== WARNING: new redirection conflicts with existing -- ignoring it
+--3341--     new: 0x04016490 (index               ) R-> 0x04024cb0 index
+--3341-- REDIR: 0x4016670 (strlen) redirected to 0x40250f0 (strlen)
+--3341-- Reading syms from /usr/lib/libSDL-1.2.so.0.11.3 (0x403a000)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libSDL_ttf-2.0.so.0.6.3 (0x40eb000)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libSDL_image-1.2.so.0.8.2 (0x40f0000)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libboost_thread.so.1.42.0 (0x410c000)
+--3341--   Considering /usr/lib/libboost_thread.so.1.42.0 ..
+--3341--   .. CRC mismatch (computed 041b4634 wanted 77af6349)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libstdc++.so.6.0.13 (0x411f000)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /lib/i686/cmov/libm-2.11.3.so (0x4214000)
+--3341--   Considering /lib/i686/cmov/libm-2.11.3.so ..
+--3341--   .. CRC mismatch (computed 192a77c4 wanted 54f9f60e)
+--3341--   Considering /usr/lib/debug/lib/i686/cmov/libm-2.11.3.so ..
+--3341--   .. CRC is valid
+--3341-- Reading syms from /lib/libgcc_s.so.1 (0x423b000)
+--3341--   Considering /lib/libgcc_s.so.1 ..
+--3341--   .. CRC mismatch (computed 5efc9915 wanted ece5a7a0)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /lib/i686/cmov/libc-2.11.3.so (0x4259000)
+--3341--   Considering /lib/i686/cmov/libc-2.11.3.so ..
+--3341--   .. CRC mismatch (computed 54553e9a wanted b0c0c033)
+--3341--   Considering /usr/lib/debug/lib/i686/cmov/libc-2.11.3.so ..
+--3341--   .. CRC is valid
+--3341-- Reading syms from /lib/i686/cmov/libpthread-2.11.3.so (0x43a0000)
+--3341--   Considering /lib/i686/cmov/libpthread-2.11.3.so ..
+--3341--   .. CRC mismatch (computed c718df4e wanted 5d0f301b)
+--3341--   Considering /usr/lib/debug/lib/i686/cmov/libpthread-2.11.3.so ..
+--3341--   .. CRC is valid
+--3341-- Reading syms from /usr/lib/libasound.so.2.0.0 (0x43b9000)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /lib/i686/cmov/librt-2.11.3.so (0x4481000)
+--3341--   Considering /lib/i686/cmov/librt-2.11.3.so ..
+--3341--   .. CRC mismatch (computed 3793b2f8 wanted 5ff0d3f7)
+--3341--   Considering /usr/lib/debug/lib/i686/cmov/librt-2.11.3.so ..
+--3341--   .. CRC is valid
+--3341-- Reading syms from /lib/i686/cmov/libdl-2.11.3.so (0x448b000)
+--3341--   Considering /lib/i686/cmov/libdl-2.11.3.so ..
+--3341--   .. CRC mismatch (computed cc131032 wanted 3e040edb)
+--3341--   Considering /usr/lib/debug/lib/i686/cmov/libdl-2.11.3.so ..
+--3341--   .. CRC is valid
+--3341-- Reading syms from /usr/lib/libdirectfb-1.2.so.9.0.1 (0x448f000)
+--3341--   Considering /usr/lib/libdirectfb-1.2.so.9.0.1 ..
+--3341--   .. CRC mismatch (computed 3b3ac4ab wanted 87695dba)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libfusion-1.2.so.9.0.1 (0x4504000)
+--3341--   Considering /usr/lib/libfusion-1.2.so.9.0.1 ..
+--3341--   .. CRC mismatch (computed 6ece85cb wanted 205b7830)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libdirect-1.2.so.9.0.1 (0x450d000)
+--3341--   Considering /usr/lib/libdirect-1.2.so.9.0.1 ..
+--3341--   .. CRC mismatch (computed b026f795 wanted bf8cc747)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libvga.so.1.4.3 (0x4521000)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libfreetype.so.6.6.0 (0x4583000)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libz.so.1.2.3.4 (0x45fb000)
+--3341--   Considering /usr/lib/libz.so.1.2.3.4 ..
+--3341--   .. CRC mismatch (computed 7be92cfa wanted 329326cb)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libjpeg.so.62.0.0 (0x460f000)
+--3341--   Considering /usr/lib/libjpeg.so.62.0.0 ..
+--3341--   .. CRC mismatch (computed 631c2536 wanted a713a003)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libtiff.so.4.3.3 (0x462f000)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /lib/libx86.so.1 (0x468a000)
+--3341--   Considering /lib/libx86.so.1 ..
+--3341--   .. CRC mismatch (computed 0bfa321f wanted d5f2b27d)
+--3341--    object doesn't have a symbol table
+--3341-- REDIR: 0x42cba20 (index) redirected to 0x4024c20 (index)
+--3341-- REDIR: 0x42cce30 (memchr) redirected to 0x4025830 (memchr)
+--3341-- REDIR: 0x42cc5a0 (rindex) redirected to 0x4024b60 (rindex)
+--3341-- REDIR: 0x42cc1f0 (__GI_strlen) redirected to 0x40250d0 (__GI_strlen)
+--3341-- REDIR: 0x41dcb80 (operator new(unsigned int)) redirected to 0x4024697 (operator new(unsigned int))
+--3341-- REDIR: 0x42c8040 (calloc) redirected to 0x40231af (calloc)
+--3341-- REDIR: 0x42c8920 (malloc) redirected to 0x4023ecb (malloc)
+--3341-- Reading syms from /usr/lib/libX11.so.6.3.0 (0x4a90000)
+--3341--   Considering /usr/lib/libX11.so.6.3.0 ..
+--3341--   .. CRC mismatch (computed a694be87 wanted 7352fae8)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libxcb.so.1.1.0 (0x4bad000)
+--3341--   Considering /usr/lib/libxcb.so.1.1.0 ..
+--3341--   .. CRC mismatch (computed fb0f7568 wanted ea068b06)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libXau.so.6.0.0 (0x4bc6000)
+--3341--   Considering /usr/lib/libXau.so.6.0.0 ..
+--3341--   .. CRC mismatch (computed 43870ade wanted 118ded9d)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libXdmcp.so.6.0.0 (0x4bc9000)
+--3341--   Considering /usr/lib/libXdmcp.so.6.0.0 ..
+--3341--   .. CRC mismatch (computed 978bcfc0 wanted 6eb57923)
+--3341--    object doesn't have a symbol table
+--3341-- REDIR: 0x42cc130 (strlen) redirected to 0x401f42c (_vgnU_ifunc_wrapper)
+--3341-- Reading syms from /usr/lib/libXext.so.6.4.0 (0x4bce000)
+--3341--   Considering /usr/lib/libXext.so.6.4.0 ..
+--3341--   .. CRC mismatch (computed 7dd895ab wanted 3c18378c)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libXrender.so.1.3.0 (0x4bdd000)
+--3341--   Considering /usr/lib/libXrender.so.1.3.0 ..
+--3341--   .. CRC mismatch (computed a7ee900a wanted de6944ed)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libXrandr.so.2.2.0 (0x4be6000)
+--3341--   Considering /usr/lib/libXrandr.so.2.2.0 ..
+--3341--   .. CRC mismatch (computed e2639be2 wanted 7b2f3e19)
+--3341--    object doesn't have a symbol table
+--3341-- REDIR: 0x4016ae0 (stpcpy) redirected to 0x40262e0 (stpcpy)
+--3341-- REDIR: 0x42cc170 (__strlen_sse2) redirected to 0x40250b0 (strlen)
+--3341-- REDIR: 0x42c8840 (free) redirected to 0x4023ae5 (free)
+--3341-- REDIR: 0x42cd830 (memcpy) redirected to 0x4025870 (memcpy)
+--3341-- REDIR: 0x42cc3e0 (strncmp) redirected to 0x40255d0 (strncmp)
+--3341-- REDIR: 0x42cd520 (stpcpy) redirected to 0x4026120 (stpcpy)
+--3341-- REDIR: 0x42cd390 (mempcpy) redirected to 0x4026600 (mempcpy)
+--3341-- REDIR: 0x42ceb60 (strchrnul) redirected to 0x4026590 (strchrnul)
+--3341-- REDIR: 0x42c98a0 (realloc) redirected to 0x4023f7a (realloc)
+--3341-- REDIR: 0x42cbc00 (strcpy) redirected to 0x4025130 (strcpy)
+--3341-- REDIR: 0x42cd330 (memset) redirected to 0x40264a0 (memset)
+--3341-- REDIR: 0x42cd2c0 (memmove) redirected to 0x4026510 (memmove)
+--3341-- REDIR: 0x42cc4c0 (strncpy) redirected to 0x40252f0 (strncpy)
+--3341-- Discarding syms at 0x4be73c0-0x4bebf08 in /usr/lib/libXrandr.so.2.2.0 due to munmap()
+--3341-- Discarding syms at 0x4bd0b90-0x4bdb038 in /usr/lib/libXext.so.6.4.0 due to munmap()
+--3341-- Discarding syms at 0x4bde550-0x4be43e8 in /usr/lib/libXrender.so.1.3.0 due to munmap()
+--3341-- Discarding syms at 0x4aa66c0-0x4b34a68 in /usr/lib/libX11.so.6.3.0 due to munmap()
+--3341-- Discarding syms at 0x4bb4f40-0x4bc3878 in /usr/lib/libxcb.so.1.1.0 due to munmap()
+--3341-- Discarding syms at 0x4bc6a40-0x4bc7748 in /usr/lib/libXau.so.6.0.0 due to munmap()
+--3341-- Discarding syms at 0x4bc9fc0-0x4bcbb98 in /usr/lib/libXdmcp.so.6.0.0 due to munmap()
+--3341-- Reading syms from /usr/lib/libX11.so.6.3.0 (0x4a90000)
+--3341--   Considering /usr/lib/libX11.so.6.3.0 ..
+--3341--   .. CRC mismatch (computed a694be87 wanted 7352fae8)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libxcb.so.1.1.0 (0x4bad000)
+--3341--   Considering /usr/lib/libxcb.so.1.1.0 ..
+--3341--   .. CRC mismatch (computed fb0f7568 wanted ea068b06)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libXau.so.6.0.0 (0x4bc6000)
+--3341--   Considering /usr/lib/libXau.so.6.0.0 ..
+--3341--   .. CRC mismatch (computed 43870ade wanted 118ded9d)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libXdmcp.so.6.0.0 (0x4bc9000)
+--3341--   Considering /usr/lib/libXdmcp.so.6.0.0 ..
+--3341--   .. CRC mismatch (computed 978bcfc0 wanted 6eb57923)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libXext.so.6.4.0 (0x4bce000)
+--3341--   Considering /usr/lib/libXext.so.6.4.0 ..
+--3341--   .. CRC mismatch (computed 7dd895ab wanted 3c18378c)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libXrender.so.1.3.0 (0x4bdd000)
+--3341--   Considering /usr/lib/libXrender.so.1.3.0 ..
+--3341--   .. CRC mismatch (computed a7ee900a wanted de6944ed)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libXrandr.so.2.2.0 (0x4be6000)
+--3341--   Considering /usr/lib/libXrandr.so.2.2.0 ..
+--3341--   .. CRC mismatch (computed e2639be2 wanted 7b2f3e19)
+--3341--    object doesn't have a symbol table
+--3341-- REDIR: 0x42cbb90 (strcmp) redirected to 0x40256b0 (strcmp)
+--3341-- Reading syms from /usr/lib/libXcursor.so.1.0.2 (0x4d62000)
+--3341--   Considering /usr/lib/libXcursor.so.1.0.2 ..
+--3341--   .. CRC mismatch (computed aa0cb633 wanted b7e2faa3)
+--3341--    object doesn't have a symbol table
+--3341-- Reading syms from /usr/lib/libXfixes.so.3.1.0 (0x4d6b000)
+--3341--   Considering /usr/lib/libXfixes.so.3.1.0 ..
+--3341--   .. CRC mismatch (computed a7b0fe1c wanted da4862b2)
+--3341--    object doesn't have a symbol table
+--3341-- REDIR: 0x41da6e0 (operator delete(void*)) redirected to 0x40237fc (operator delete(void*))
+--3341-- REDIR: 0x41dccc0 (operator new[](unsigned int)) redirected to 0x402432b (operator new[](unsigned int))
+--3341-- REDIR: 0x41da740 (operator delete[](void*)) redirected to 0x402347e (operator delete[](void*))
+==3341== Invalid read of size 4
+==3341==    at 0x805DA4F: WorldState::movementHandler(Timer*, bool*) (WorldState.cpp:193)
+==3341==    by 0x8063352: WorldState::update(Timer*, bool*) (WorldState.cpp:293)
+==3341==    by 0x8057AED: StateMachine::update(bool*) (StateMachine.cpp:19)
+==3341==    by 0x80526BD: main (Main.cpp:44)
+==3341==  Address 0x4a5c1e4 is 4 bytes before a block of size 4 alloc'd
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x80576F5: Input::readInput() (new_allocator.h:89)
+==3341==    by 0x805269C: main (Main.cpp:42)
+==3341== 
+==3341== 
+==3341== HEAP SUMMARY:
+==3341==     in use at exit: 3,516,612 bytes in 1,979 blocks
+==3341==   total heap usage: 51,680 allocs, 49,701 frees, 18,606,864 bytes allocated
+==3341== 
+==3341== Searching for pointers to 1,979 not-freed blocks
+==3341== Checked 4,169,120 bytes
+==3341== 
+==3341== 6 bytes in 1 blocks are possibly lost in loss record 14 of 447
+==3341==    at 0x4023F50: malloc (vg_replace_malloc.c:236)
+==3341==    by 0x4AB65EF: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4BDAD1B: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BE761F: ??? (in /usr/lib/libXrandr.so.2.2.0)
+==3341==    by 0x4BE7954: XRRQueryVersion (in /usr/lib/libXrandr.so.2.2.0)
+==3341==    by 0x407270B: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4078B60: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407CF8B: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x406A98A: SDL_VideoInit (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40407A3: SDL_InitSubSystem (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4040806: SDL_Init (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x8055E33: Graphics::Graphics(int, int, char const*) (Graphics.cpp:4)
+==3341== 
+==3341== 8 bytes in 1 blocks are possibly lost in loss record 53 of 447
+==3341==    at 0x4023F50: malloc (vg_replace_malloc.c:236)
+==3341==    by 0x4AB65EF: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4BDAD1B: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BD5B65: ??? (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BD5F6D: XShmQueryExtension (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x40726CD: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407D23A: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x406A98A: SDL_VideoInit (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40407A3: SDL_InitSubSystem (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4040806: SDL_Init (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x8055E33: Graphics::Graphics(int, int, char const*) (Graphics.cpp:4)
+==3341==    by 0x80524CF: global constructors keyed to event (Main.cpp:24)
+==3341== 
+==3341== 8 bytes in 1 blocks are possibly lost in loss record 54 of 447
+==3341==    at 0x4023F50: malloc (vg_replace_malloc.c:236)
+==3341==    by 0x4AB65EF: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4BDAD1B: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BD5B65: ??? (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BD6590: XShmPutImage (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4072643: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4076F8F: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4068F0D: SDL_UpdateRects (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4069053: SDL_UpdateRect (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4069551: SDL_Flip (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x80526A4: main (Main.cpp:43)
+==3341== 
+==3341== 9 bytes in 1 blocks are possibly lost in loss record 56 of 447
+==3341==    at 0x4023F50: malloc (vg_replace_malloc.c:236)
+==3341==    by 0x4AB65EF: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4BDAD1B: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4071F10: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4088A35: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x408927D: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40787A6: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407CF8B: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x406A98A: SDL_VideoInit (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40407A3: SDL_InitSubSystem (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4040806: SDL_Init (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x8055E33: Graphics::Graphics(int, int, char const*) (Graphics.cpp:4)
+==3341== 
+==3341== 10 bytes in 1 blocks are possibly lost in loss record 58 of 447
+==3341==    at 0x4023F50: malloc (vg_replace_malloc.c:236)
+==3341==    by 0x4AB65EF: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4B26990: XkbUseExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4ABC3F0: XOpenDisplay (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x407174D: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407CEF0: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x406A98A: SDL_VideoInit (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40407A3: SDL_InitSubSystem (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4040806: SDL_Init (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x8055E33: Graphics::Graphics(int, int, char const*) (Graphics.cpp:4)
+==3341==    by 0x80524CF: global constructors keyed to event (Main.cpp:24)
+==3341==    by 0x806E88C: ??? (in /home/barney/Documents/jrpg-alpha/prgm)
+==3341== 
+==3341== 10 bytes in 1 blocks are possibly lost in loss record 59 of 447
+==3341==    at 0x4023F50: malloc (vg_replace_malloc.c:236)
+==3341==    by 0x4AB65EF: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4B26990: XkbUseExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4ABC3F0: XOpenDisplay (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x407174D: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407CF13: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x406A98A: SDL_VideoInit (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40407A3: SDL_InitSubSystem (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4040806: SDL_Init (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x8055E33: Graphics::Graphics(int, int, char const*) (Graphics.cpp:4)
+==3341==    by 0x80524CF: global constructors keyed to event (Main.cpp:24)
+==3341==    by 0x806E88C: ??? (in /home/barney/Documents/jrpg-alpha/prgm)
+==3341== 
+==3341== 16 bytes in 1 blocks are possibly lost in loss record 90 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x80641BE: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 16 bytes in 1 blocks are possibly lost in loss record 91 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x8064236: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 16 bytes in 1 blocks are possibly lost in loss record 92 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x80642AE: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 16 bytes in 1 blocks are possibly lost in loss record 93 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x8064326: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 17 bytes in 1 blocks are possibly lost in loss record 94 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805A2EE: MainMenuState::MainMenuState(Graphics*) (MainMenuState.cpp:13)
+==3341==    by 0x8052540: main (Main.cpp:29)
+==3341== 
+==3341== 17 bytes in 1 blocks are possibly lost in loss record 95 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805A36F: MainMenuState::MainMenuState(Graphics*) (MainMenuState.cpp:14)
+==3341==    by 0x8052540: main (Main.cpp:29)
+==3341== 
+==3341== 17 bytes in 1 blocks are possibly lost in loss record 96 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x8058B28: IntroState::IntroState(Graphics*) (basic_string.h:975)
+==3341==    by 0x8052565: main (Main.cpp:31)
+==3341== 
+==3341== 17 bytes in 1 blocks are possibly lost in loss record 97 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805FAB1: WorldState::WorldState(Graphics*) (WorldState.cpp:108)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 17 bytes in 1 blocks are possibly lost in loss record 98 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805FBC4: WorldState::WorldState(Graphics*) (WorldState.cpp:109)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 18 bytes in 1 blocks are possibly lost in loss record 99 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x80641A0: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 18 bytes in 1 blocks are possibly lost in loss record 100 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x80641FA: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 18 bytes in 1 blocks are possibly lost in loss record 101 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x8064218: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 18 bytes in 1 blocks are possibly lost in loss record 102 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x8064272: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 18 bytes in 1 blocks are possibly lost in loss record 103 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x8064290: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 18 bytes in 1 blocks are possibly lost in loss record 104 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x80642EA: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 18 bytes in 1 blocks are possibly lost in loss record 105 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x8064308: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 18 bytes in 1 blocks are possibly lost in loss record 106 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x8064362: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 18 bytes in 1 blocks are possibly lost in loss record 107 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805A1D1: MainMenuState::MainMenuState(Graphics*) (basic_string.h:975)
+==3341==    by 0x8052540: main (Main.cpp:29)
+==3341== 
+==3341== 18 bytes in 1 blocks are possibly lost in loss record 108 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805A772: MainMenuState::MainMenuState(Graphics*) (MainMenuState.cpp:22)
+==3341==    by 0x8052540: main (Main.cpp:29)
+==3341== 
+==3341== 18 bytes in 1 blocks are possibly lost in loss record 109 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805FDD1: WorldState::WorldState(Graphics*) (WorldState.cpp:114)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 18 bytes in 1 blocks are possibly lost in loss record 110 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x80678EA: Player::updateSpriteFrame(std::string, int) (Player.cpp:49)
+==3341==    by 0x805DE70: WorldState::movementHandler(Timer*, bool*) (WorldState.cpp:232)
+==3341==    by 0x8063352: WorldState::update(Timer*, bool*) (WorldState.cpp:293)
+==3341==    by 0x8057AED: StateMachine::update(bool*) (StateMachine.cpp:19)
+==3341==    by 0x80526BD: main (Main.cpp:44)
+==3341== 
+==3341== 19 bytes in 1 blocks are possibly lost in loss record 111 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x80641DC: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 19 bytes in 1 blocks are possibly lost in loss record 112 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x8064254: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 19 bytes in 1 blocks are possibly lost in loss record 113 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x80642CC: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 19 bytes in 1 blocks are possibly lost in loss record 114 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x8064344: Player::Player() (basic_string.h:975)
+==3341==    by 0x805ECCD: WorldState::WorldState(Graphics*) (WorldState.cpp:25)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 19 bytes in 1 blocks are possibly lost in loss record 115 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8A96: std::string::_M_mutate(unsigned int, unsigned int, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8C39: std::string::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B8CDD: std::string::assign(char const*, unsigned int) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805EA68: WorldState::WorldState(Graphics*) (basic_string.h:975)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 21 bytes in 1 blocks are possibly lost in loss record 125 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805A1EB: MainMenuState::MainMenuState(Graphics*) (MainMenuState.cpp:12)
+==3341==    by 0x8052540: main (Main.cpp:29)
+==3341== 
+==3341== 23 bytes in 1 blocks are possibly lost in loss record 126 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805F2AB: WorldState::WorldState(Graphics*) (WorldState.cpp:59)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 24 bytes in 1 blocks are possibly lost in loss record 136 of 447
+==3341==    at 0x4023F50: malloc (vg_replace_malloc.c:236)
+==3341==    by 0x4AB65EF: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4BDAD1B: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BDA545: ??? (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BDA993: ??? (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BDAF46: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BD5B65: ??? (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BD5F6D: XShmQueryExtension (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x40726CD: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407D23A: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x406A98A: SDL_VideoInit (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40407A3: SDL_InitSubSystem (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341== 
+==3341== 24 bytes in 1 blocks are possibly lost in loss record 137 of 447
+==3341==    at 0x4023F50: malloc (vg_replace_malloc.c:236)
+==3341==    by 0x4AB65EF: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4BDAD1B: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BDA545: ??? (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BDA993: ??? (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BDAF46: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BD5B65: ??? (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BD6590: XShmPutImage (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4072643: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4076F8F: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4068F0D: SDL_UpdateRects (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4069053: SDL_UpdateRect (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341== 
+==3341== 27 bytes in 1 blocks are possibly lost in loss record 142 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805A389: MainMenuState::MainMenuState(Graphics*) (MainMenuState.cpp:14)
+==3341==    by 0x8052540: main (Main.cpp:29)
+==3341== 
+==3341== 27 bytes in 1 blocks are possibly lost in loss record 143 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805FACE: WorldState::WorldState(Graphics*) (WorldState.cpp:108)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 28 bytes in 1 blocks are possibly lost in loss record 151 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805A205: MainMenuState::MainMenuState(Graphics*) (MainMenuState.cpp:12)
+==3341==    by 0x8052540: main (Main.cpp:29)
+==3341== 
+==3341== 32 bytes in 1 blocks are possibly lost in loss record 234 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805A308: MainMenuState::MainMenuState(Graphics*) (MainMenuState.cpp:13)
+==3341==    by 0x8052540: main (Main.cpp:29)
+==3341== 
+==3341== 32 bytes in 1 blocks are possibly lost in loss record 235 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805FBE1: WorldState::WorldState(Graphics*) (WorldState.cpp:109)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 39 bytes in 1 blocks are possibly lost in loss record 239 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805A78C: MainMenuState::MainMenuState(Graphics*) (MainMenuState.cpp:22)
+==3341==    by 0x8052540: main (Main.cpp:29)
+==3341== 
+==3341== 39 bytes in 1 blocks are possibly lost in loss record 240 of 447
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x41B6795: std::string::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7493: ??? (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x41B7685: std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&) (in /usr/lib/libstdc++.so.6.0.13)
+==3341==    by 0x805FDEE: WorldState::WorldState(Graphics*) (WorldState.cpp:114)
+==3341==    by 0x8052584: main (Main.cpp:33)
+==3341== 
+==3341== 72 bytes in 1 blocks are possibly lost in loss record 297 of 447
+==3341==    at 0x402328F: calloc (vg_replace_malloc.c:467)
+==3341==    by 0x4AB65C5: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4B26990: XkbUseExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4ABC3F0: XOpenDisplay (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x407174D: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407CEF0: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x406A98A: SDL_VideoInit (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40407A3: SDL_InitSubSystem (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4040806: SDL_Init (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x8055E33: Graphics::Graphics(int, int, char const*) (Graphics.cpp:4)
+==3341==    by 0x80524CF: global constructors keyed to event (Main.cpp:24)
+==3341==    by 0x806E88C: ??? (in /home/barney/Documents/jrpg-alpha/prgm)
+==3341== 
+==3341== 72 bytes in 1 blocks are possibly lost in loss record 298 of 447
+==3341==    at 0x402328F: calloc (vg_replace_malloc.c:467)
+==3341==    by 0x4AB65C5: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4B26990: XkbUseExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4ABC3F0: XOpenDisplay (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x407174D: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407CF13: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x406A98A: SDL_VideoInit (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40407A3: SDL_InitSubSystem (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4040806: SDL_Init (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x8055E33: Graphics::Graphics(int, int, char const*) (Graphics.cpp:4)
+==3341==    by 0x80524CF: global constructors keyed to event (Main.cpp:24)
+==3341==    by 0x806E88C: ??? (in /home/barney/Documents/jrpg-alpha/prgm)
+==3341== 
+==3341== 72 bytes in 1 blocks are possibly lost in loss record 299 of 447
+==3341==    at 0x402328F: calloc (vg_replace_malloc.c:467)
+==3341==    by 0x4AB65C5: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4BDAD1B: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BD5B65: ??? (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BD5F6D: XShmQueryExtension (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x40726CD: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407D23A: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x406A98A: SDL_VideoInit (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40407A3: SDL_InitSubSystem (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4040806: SDL_Init (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x8055E33: Graphics::Graphics(int, int, char const*) (Graphics.cpp:4)
+==3341==    by 0x80524CF: global constructors keyed to event (Main.cpp:24)
+==3341== 
+==3341== 72 bytes in 1 blocks are possibly lost in loss record 300 of 447
+==3341==    at 0x402328F: calloc (vg_replace_malloc.c:467)
+==3341==    by 0x4AB65C5: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4BDAD1B: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BDA545: ??? (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BDA993: ??? (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BDAF46: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BD5B65: ??? (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BD5F6D: XShmQueryExtension (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x40726CD: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407D23A: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x406A98A: SDL_VideoInit (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40407A3: SDL_InitSubSystem (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341== 
+==3341== 72 bytes in 1 blocks are possibly lost in loss record 301 of 447
+==3341==    at 0x402328F: calloc (vg_replace_malloc.c:467)
+==3341==    by 0x4AB65C5: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4BDAD1B: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4071F10: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4088A35: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x408927D: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40787A6: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407CF8B: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x406A98A: SDL_VideoInit (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40407A3: SDL_InitSubSystem (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4040806: SDL_Init (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x8055E33: Graphics::Graphics(int, int, char const*) (Graphics.cpp:4)
+==3341== 
+==3341== 72 bytes in 1 blocks are possibly lost in loss record 302 of 447
+==3341==    at 0x402328F: calloc (vg_replace_malloc.c:467)
+==3341==    by 0x4AB65C5: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4BDAD1B: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BE761F: ??? (in /usr/lib/libXrandr.so.2.2.0)
+==3341==    by 0x4BE7954: XRRQueryVersion (in /usr/lib/libXrandr.so.2.2.0)
+==3341==    by 0x407270B: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4078B60: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407CF8B: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x406A98A: SDL_VideoInit (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40407A3: SDL_InitSubSystem (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4040806: SDL_Init (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x8055E33: Graphics::Graphics(int, int, char const*) (Graphics.cpp:4)
+==3341== 
+==3341== 72 bytes in 1 blocks are possibly lost in loss record 303 of 447
+==3341==    at 0x402328F: calloc (vg_replace_malloc.c:467)
+==3341==    by 0x4AB64FF: XAddExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4BDAF78: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4071F10: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40893A5: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x408996D: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4078976: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407CF8B: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x406A98A: SDL_VideoInit (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x40407A3: SDL_InitSubSystem (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4040806: SDL_Init (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x8055E33: Graphics::Graphics(int, int, char const*) (Graphics.cpp:4)
+==3341== 
+==3341== 72 bytes in 1 blocks are possibly lost in loss record 304 of 447
+==3341==    at 0x402328F: calloc (vg_replace_malloc.c:467)
+==3341==    by 0x4AB65C5: XInitExtension (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4BDAD1B: XextAddDisplay (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BD5B65: ??? (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4BD6590: XShmPutImage (in /usr/lib/libXext.so.6.4.0)
+==3341==    by 0x4072643: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4076F8F: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4068F0D: SDL_UpdateRects (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4069053: SDL_UpdateRect (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x4069551: SDL_Flip (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x80526A4: main (Main.cpp:43)
+==3341== 
+==3341== 112 (8 direct, 104 indirect) bytes in 1 blocks are definitely lost in loss record 343 of 447
+==3341==    at 0x4024046: realloc (vg_replace_malloc.c:525)
+==3341==    by 0x4ADF85E: ??? (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4AE03B5: ??? (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4AE19A1: ??? (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4AE21B4: _XlcCreateLC (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4B021BA: _XlcDefaultLoader (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4AEA0DB: _XOpenLC (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4AEA232: _XlcCurrentLC (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x4AEA6D1: XSetLocaleModifiers (in /usr/lib/libX11.so.6.3.0)
+==3341==    by 0x407250D: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407C23F: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341==    by 0x407D123: ??? (in /usr/lib/libSDL-1.2.so.0.11.3)
+==3341== 
+==3341== LEAK SUMMARY:
+==3341==    definitely lost: 8 bytes in 1 blocks
+==3341==    indirectly lost: 104 bytes in 4 blocks
+==3341==      possibly lost: 1,403 bytes in 51 blocks
+==3341==    still reachable: 3,515,097 bytes in 1,923 blocks
+==3341==         suppressed: 0 bytes in 0 blocks
+==3341== Reachable blocks (those to which a pointer was found) are not shown.
+==3341== To see them, rerun with: --leak-check=full --show-reachable=yes
+==3341== 
+==3341== ERROR SUMMARY: 70 errors from 53 contexts (suppressed: 330 from 14)
+==3341== 
+==3341== 18 errors in context 1 of 53:
+==3341== Invalid read of size 4
+==3341==    at 0x805DA4F: WorldState::movementHandler(Timer*, bool*) (WorldState.cpp:193)
+==3341==    by 0x8063352: WorldState::update(Timer*, bool*) (WorldState.cpp:293)
+==3341==    by 0x8057AED: StateMachine::update(bool*) (StateMachine.cpp:19)
+==3341==    by 0x80526BD: main (Main.cpp:44)
+==3341==  Address 0x4a5c1e4 is 4 bytes before a block of size 4 alloc'd
+==3341==    at 0x402471C: operator new(unsigned int) (vg_replace_malloc.c:255)
+==3341==    by 0x80576F5: Input::readInput() (new_allocator.h:89)
+==3341==    by 0x805269C: main (Main.cpp:42)
+==3341== 
+--3341-- 
+--3341-- used_suppression:    203 X on SUSE11 writev uninit padding
+--3341-- used_suppression:    127 dl-hack3-cond-1
+==3341== 
+==3341== ERROR SUMMARY: 70 errors from 53 contexts (suppressed: 330 from 14)
