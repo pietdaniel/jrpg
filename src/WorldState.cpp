@@ -152,7 +152,7 @@ void WorldState::init_map(){
 	// map initializations
 	map = new WorldMap(1280, 960);
 	// 			 char* file, int TOTAL_TILES, int TILE_SPRITES, int tileWidth, int tileHeight)
-	map->loadMap("/home/barney/Documents/jrpg-alpha/build/first.map", 192, 12, 80, 80);
+	map->loadMap("build/first.map", 192, 12, 80, 80);
 	tileBitmap = graphics->loadBitmap("build/grasswatertiles.bmp",0,255,255);
 	doodadBitmap = graphics->loadBitmap("build/tileset.bmp",0,255,255);
 	// helper to cut up the bmp
