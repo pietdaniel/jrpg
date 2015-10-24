@@ -1,6 +1,6 @@
 #ifndef INPUT_HPP
 #define INPUT_HPP
-#include "SDL/SDL.h"
+#include <SDL2/SDL.h>
 #include "Global.hpp"
 
 class Input {

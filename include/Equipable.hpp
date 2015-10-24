@@ -5,16 +5,15 @@
 #include <string>
 
 class Equipable : public IHoldable {
-	public:
-		Equipable() : IHoldable() {
-			name = "";
-			description = "";
-		}
+  public:
+    Equipable() : IHoldable() {
+      name = "";
+      description = "";
+    }
 
-		~Equipable();
+    ~Equipable();
 
-		virtual void action();
-		virtual void action(Toon* target);
-
+    virtual void action();
+    virtual void action(Toon* target);
 };
 #endif

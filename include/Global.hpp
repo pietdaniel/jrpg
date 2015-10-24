@@ -1,7 +1,7 @@
 //JRPG Daniel Piet Apr 2013
 #ifndef GLOBAL_HPP
 #define GLOBAL_HPP
-#include "SDL/SDL.h"
+#include <SDL2/SDL.h>
 #include <vector>
 #include <iostream>
 

@@ -2,9 +2,9 @@
 #ifndef GRAPHICS_HPP
 #define GRAPHICS_HPP
 
-#include "SDL/SDL.h"
-#include "SDL/SDL_image.h"
-#include "SDL/SDL_ttf.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL/SDL_ttf.h>
 #include <vector>
 #include <iostream>
 #include <string>
@@ -63,7 +63,7 @@ class Graphics {
 					  int bR, int bG, int bB);
 
 		void drawText(std::string string, int size,
-				  int x, int y, 
+				  int x, int y,
 				  int frR, int frG, int frB,
 			  	  int bR, int bG, int bB);
 
@@ -89,10 +89,13 @@ class Graphics {
 
 		void drawTiles(SDL_Surface* tileImage, std::vector<Tile*> tiles, std::vector<SDL_Rect> tileset);
 
-	private: 
+	private:
 		void displayCursor(int x, int y);
 
-		SDL_Surface* m_screen;
+    SDL_Window *window;
+    SDL_Renderer *renderer;
+    SDL_Surface *m_screen;
+
 		SDL_Rect camera;
 		int m_bgR;
 		int m_bgG;

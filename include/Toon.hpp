@@ -26,7 +26,7 @@ class Toon   {
 		int total_health;
 		int mana;
 		int total_mana;
-	private: 
+	private:
 		std::string lore;
 		// Equipable* helm;
 		// Equipable* chest;
@@ -35,6 +35,5 @@ class Toon   {
 		// Equipable* weapon;
 		// Equipable* ring;
 		std::map<std::string, ISpell*> spells;
-
 };
 #endif

@@ -28,7 +28,7 @@ class TextMenuItem {
 
 		std::string title;
 		std::string description;
-		
+
 	private:
 		boost::function<void()> callback;
 		int x;	// position within TextMenu rect

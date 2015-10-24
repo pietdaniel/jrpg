@@ -92,7 +92,7 @@ class Chest : public SpriteBase  {
 		// Chest(SDL_Surface* tileImage, int width, int height);
 		~Chest();
 
-		// changes your direction by either updating the 
+		// changes your direction by either updating the
 		// walkcycle or setting it to the new direction
 		// fixme 100 could be a frame rate number
 		virtual void updateSpriteFrame(std::string key, int ticks);
@@ -118,7 +118,7 @@ class Chest : public SpriteBase  {
 
 		void deleteConetents();
 
-		
+
 	private:
 
 		std::string speech;
@@ -136,7 +136,7 @@ class Chest : public SpriteBase  {
 		int velY;
 		int health;
 		int lastUpdate;
-			// DOWN0, DOWN1, DOWN2, DOWN3, UP0 ..., LEFT0 ..., RIGHT0 ...,  
+			// DOWN0, DOWN1, DOWN2, DOWN3, UP0 ..., LEFT0 ..., RIGHT0 ...,
 		std::map<std::string, SDL_Rect> frameCycle;
 		SDL_Rect hitbox;
 
